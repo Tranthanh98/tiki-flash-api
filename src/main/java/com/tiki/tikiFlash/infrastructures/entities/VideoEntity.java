@@ -19,6 +19,8 @@ public class VideoEntity extends BaseAuditEntity{
     @Column(nullable = false)
     String name;
 
+    private String title;
+
     @Column(nullable = false)
     long size;
 
@@ -30,4 +32,10 @@ public class VideoEntity extends BaseAuditEntity{
 
     @Column(nullable = false)
     String s3Key;
+
+    @Column(nullable = false)
+    Boolean isActive = true;
+
+    @Column(nullable = false)
+    Integer totalView = 0;
 }
