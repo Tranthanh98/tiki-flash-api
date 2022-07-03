@@ -17,38 +17,12 @@ A. Setup development env
 
 6. Install mysql and create database tikiFlash
 
-7. Create new setting file application-dev.properties
-
-   7.1. Copy the setting from application.properties and uncomment migration and mssql setting
-
-   7.2. Set server.port = 9000
-
-   7.3. Update your database username and password
-
-   7.4  Add jwt setting
-
-   ####### resource server configuration properties
-   spring.security.oauth2.resourceserver.jwt.issuer-uri: http://localhost:8080/auth/realms/docsoupdev
-
-   7.5 Add the credentials access key and secret key of the aws cloud
-   ###### the configuration properties
-   cloud.aws.credentials.access-key=
-   cloud.aws.credentials.secret-key=
 
 B. Run
-1. Run with debug
+1. open Mysql workbench and run this query: create database tikiFlash
 
-mvn spring-boot:run --debug
+2. run mvn flyway:migrate
 
-2. Swagger
-   http://localhost:9000/api/swagger-ui.html
+3. on the root project, run this command: mvn spring-boot:run
 
-2. Run with docker
-
-docker-compose up --build
-
-Test Environment
-
-
-1. Url = http://ec2-18-139-221-206.ap-southeast-1.compute.amazonaws.com/health
 
