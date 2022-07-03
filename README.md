@@ -21,8 +21,10 @@ A. Setup development env
 B. Run
 1. open Mysql workbench and run this query: create database tikiFlash
 
-2. run mvn flyway:migrate
+2. run: mvn install
 
-3. on the root project, run this command: mvn spring-boot:run
+3. run: mvn flyway:migrate
+
+4. on the root project, run this command: mvn spring-boot:run
 
 
