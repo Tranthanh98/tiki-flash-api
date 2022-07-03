@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@Table(name = "test_table")
 @AllArgsConstructor
 @NoArgsConstructor
 public class TestTable {

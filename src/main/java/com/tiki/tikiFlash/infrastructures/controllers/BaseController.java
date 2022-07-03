@@ -34,6 +34,23 @@ public class BaseController {
         return ResponseEntity.ok(result);
     }
 
+    protected <T> ResponseEntity<?> handleWithResponse(Command<ResponseEntity<T>> command) {
+
+        return handle(command);
+
+    }
+
+    protected <T> ResponseEntity<?> handleWithResponse(Command<ResponseEntity<T>> command,
+                                                       BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return handleBadRequest(bindingResult);
+        }
+
+        return handle(command);
+
+    }
+
     private ResponseEntity<?> handleBadRequest(BindingResult bindingResult){
         var errors = bindingResult.getFieldErrors();
 

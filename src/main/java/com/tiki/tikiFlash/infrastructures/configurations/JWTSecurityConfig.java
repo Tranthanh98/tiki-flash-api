@@ -17,7 +17,7 @@ public class JWTSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf()
-                .ignoringAntMatchers("/health")
+                .ignoringAntMatchers("/**")
                 .and()
                 .cors();
 
@@ -26,7 +26,7 @@ public class JWTSecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/health", "/sample/**");
+        return (web) -> web.ignoring().antMatchers("/**", "/health", "/sample/**");
     }
 
     @Bean
