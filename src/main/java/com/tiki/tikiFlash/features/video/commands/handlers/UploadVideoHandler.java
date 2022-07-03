@@ -53,11 +53,13 @@ public class UploadVideoHandler implements Command.Handler<UploadVideo, Response
 
             var s3Key = uploadToS3(command.getMultipartFile().getOriginalFilename(), inputStream);
 
-            videoEntity.setS3Key(s3Key);
+            var publicLinkVideo = s3PublicDomain + s3Key;
+
+            videoEntity.setS3Key(publicLinkVideo);
 
             videoRepository.saveAndFlush(videoEntity);
 
-            return ResponseEntity.ok(s3PublicDomain + s3Key);
+            return ResponseEntity.ok(publicLinkVideo);
 
         } catch (IOException e) {
             logger.error(e.getMessage());

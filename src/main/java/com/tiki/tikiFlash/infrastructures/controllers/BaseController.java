@@ -2,6 +2,7 @@ package com.tiki.tikiFlash.infrastructures.controllers;
 
 import an.awesome.pipelinr.Command;
 import an.awesome.pipelinr.Pipeline;
+import com.tiki.tikiFlash.infrastructures.commands.BaseIdentityCommand;
 import com.tiki.tikiFlash.infrastructures.responses.ResponseMessage;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +25,20 @@ public class BaseController {
             return handleBadRequest(bindingResult);
         }
 
+        if(command instanceof BaseIdentityCommand<?>){
+            ((BaseIdentityCommand<ResponseEntity<T>>) command).setUserId("system-admin");
+        }
+
         return handle(command);
 
     }
 
     protected <T> ResponseEntity<T> handle(Command<T> command) {
+
+        if(command instanceof BaseIdentityCommand<?>){
+            ((BaseIdentityCommand<ResponseEntity<T>>) command).setUserId("system-admin");
+        }
+
         var result = command.execute(pipeline);
 
         return ResponseEntity.ok(result);
