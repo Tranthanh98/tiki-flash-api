@@ -51,7 +51,9 @@ public class UploadVideoHandler implements Command.Handler<UploadVideo, Response
         try {
             var inputStream = new ByteArrayInputStream(command.getMultipartFile().getBytes());
 
-            var s3Key = uploadToS3(command.getMultipartFile().getOriginalFilename(), inputStream);
+            var s3Key = uploadToS3(
+                    command.getMultipartFile().getOriginalFilename().replace(" ", ""),
+                    inputStream);
 
             var publicLinkVideo = s3PublicDomain + s3Key;
 
